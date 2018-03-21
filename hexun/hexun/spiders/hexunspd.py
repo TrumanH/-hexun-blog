@@ -19,8 +19,8 @@ class HexunspdSpider(scrapy.Spider):
         item = HexunItem()
         item['name']=response.xpath("//span[@class='ArticleTitleText']/a/text()").extract()
         item["url"]=response.xpath("//span[@class='ArticleTitleText']/a/@href").extract()
-        #接下来需要使用urllib和re模块获取博文的评论数和阅读数
-        #首先提取存储评论数和点击数网址的正则表达式
+        #使用urllib和re模块获取博文的评论数和阅读数
+        #构造提取评论数和点击数网址的正则表达式
         pat1='<script type="text/javascript" src="(http://click.tool.hexun.com/.*?)">'
         #hcurl为存储评论数和点击数的网址
         hcurl=re.compile(pat1).findall(str(response.body))[0]
@@ -50,8 +50,7 @@ class HexunspdSpider(scrapy.Spider):
             totalurl=data2[-2]
         else:
             totalurl=1
-        #在实际运行中，下一行print的代码可以注释掉，在调试过程中，可以开启下一行print的代码
-        #print("一共"+str(totalurl)+"页")
+        #print("一共"+str(totalurl)+"页") #调试用
         #进入for循环，依次爬取各博文列表页的博文数据
         for i in range(2,int(totalurl)+1):
             #构造下一次要爬取的url，爬取一下页博文列表页中的数据
