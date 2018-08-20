@@ -9,7 +9,7 @@ class HexunspdSpider(scrapy.Spider):
     name = 'hexunspd'
     allowed_domains = ['hexun.com']
     #start_urls = ['http://hexun.com/']
-    uid = "21282349"
+    uid = "21282349"  #博客用户代号作为网址后缀，无特殊意义。
     #通过start_requests方法编写首次的爬取行为
     def start_requests(self):
         #首次爬取模拟成浏览器进行
