@@ -22,7 +22,7 @@ class HexunspdSpider(scrapy.Spider):
         #使用urllib和re模块获取博文的评论数和阅读数
         #构造提取评论数和点击数网址的正则表达式
         pat1='<script type="text/javascript" src="(http://click.tool.hexun.com/.*?)">'
-        #hcurl为存储评论数和点击数的网址
+        #hcurl为存储评论数和点击数的网址（后面用来二次爬取）
         hcurl=re.compile(pat1).findall(str(response.body))[0]
         # 模拟成浏览器
         headers2 = ("User-Agent",
