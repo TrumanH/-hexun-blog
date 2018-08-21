@@ -17,6 +17,7 @@ class HexunspdSpider(scrapy.Spider):
 
     def parse(self, response):
         item = HexunItem()
+        #提取名字和链接
         item['name']=response.xpath("//span[@class='ArticleTitleText']/a/text()").extract()
         item["url"]=response.xpath("//span[@class='ArticleTitleText']/a/@href").extract()
         #使用urllib和re模块获取博文的评论数和阅读数
