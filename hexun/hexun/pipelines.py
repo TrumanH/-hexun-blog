@@ -4,7 +4,7 @@ import pymysql
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#这里调用py接口存数据(要写SQL),其实是不明智的做法，可加入抽象层，将直接对mysql的直接操作封装(参考Django中Model,元类)
+#这里调用py接口存数据(要写SQL),其实是不明智的做法，可加入抽象层，将对mysql的直接操作封装(参考Django中Model,ALchemy,元类)
 
 class HexunPipeline(object):
     def __init__(self):
