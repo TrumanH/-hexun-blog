@@ -22,9 +22,14 @@ class HexunspdSpider(scrapy.Spider):
         item["url"]=response.xpath("//span[@class='ArticleTitleText']/a/@href").extract()
         #使用urllib和re模块获取博文的评论数和阅读数
         #构造提取评论数和点击数网址的正则表达式
-        pat1='<script type="text/javascript" src="(http://click.tool.hexun.com/.*?)">'
-        #hcurl为存储评论数和点击数的网址（后面用来二次爬取）
-        hcurl=re.compile(pat1).findall(str(response.body))[0]
+        # edit it according to the reality
+        pat1='<script type="text/javascript" src="(http://click.tool.hexun.com/.*?)">'  
+         #hcurl为存储评论数和点击数的网址（后面用来二次爬取） 网页结构变化后表达式可能提取不到
+        urls=re.compile(pat1).findall(str(response.body))
+        hcurl = urls[0] if urls else ""
+        if !hcurl:
+            print("Extracted nothing！")
+        
         # 模拟成浏览器
         headers2 = ("User-Agent",
                    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 SE 2.X MetaSr 1.0")
