@@ -27,7 +27,7 @@ class HexunspdSpider(scrapy.Spider):
          #hcurl为存储评论数和点击数的网址（后面用来二次爬取） 网页结构变化后表达式可能提取不到
         urls=re.compile(pat1).findall(str(response.body))
         hcurl = urls[0] if urls else ""
-        if !hcurl:
+        if not hcurl:
             print("Extracted nothing！")
         
         # 模拟成浏览器
